@@ -1,19 +1,19 @@
-컴포넌트는 HTML을 반환하는 함수이다.
-리액트 어플리케이션은 한 번에 하나의 컴포넌트만 랜더링할 수 있다.
+● 컴포넌트는 HTML을 반환하는 함수이다.
+● 리액트 어플리케이션은 한 번에 하나의 컴포넌트만 랜더링할 수 있다.
 
 ex)
     ReactDOM.render(
     <App />, document.getElementById('root')
     );
 
-컴포넌트 안에 있는 프로퍼티에 벨류(값)을 줄 수 있다.
+● 컴포넌트 안에 있는 프로퍼티에 벨류(값)을 줄 수 있다.
 ex)
     <Food fav="kimchi" />
     Food 컴포넌트안의 fav라는 이름의 프로퍼티에 kimchi라는 value를 줬다.
 
-props란 properties의 약자로, component안에 넣게되는 것들이라 생각하면 딘다.
+● props란 properties의 약자로, component안에 넣게되는 것들이라 생각하면 딘다.
 
-map은 array의 각 item에서 function을 실행하는 array를 가지는 javaScript function이며,
+● map은 array의 각 item에서 function을 실행하는 array를 가지는 javaScript function이며,
 그 function의 result를 갖는 array를 너에게 준다.
 
 const friends = ["dal", "mark", "lynn", "japan guy"];
@@ -26,3 +26,84 @@ friends.map(current => {
 >>>
 
 friends = ["dal ♥", "mark ♥", "lynn ♥", "japan guy ♥"];
+
+
+● dish는 오브젝트로 name을 반환하기 위해 쓰인다.
+현재 진행중이며 돌면서, foodILike 배열 안에 있는 dish.name의 변수들을 반환하는데 사용된다.
+
+>>>
+
+  return (
+    <div>
+      {foodILike.map((dish) => (
+        <Food
+          key={dish.id}
+          name={dish.name}
+          picture={dish.image}
+          rating={dish.rating}
+        />
+      ))}
+    </div>
+  );
+
+● class App 컴포넌트는 fuction App 컴포넌트와 달리, return이 아닌 렌더링 메소드를 사용한다.
+● class App 컴포넌트는 React.Component를 확장했기 때문이다.
+
+● function 컴포넌트는 뭔가를 return한 후에 screen에 표시된다. 
+하지만, class 컴포넌트는 react Component로 확장되고 /* render() { return ... }*/ screen에 표시된다.
+
+● 리액트는 상태의 숫자를 직접 변경하게되면 작동하지 않는다. (동적으로 작동하기 때문에)
+● 따라서 우리는 새로운 state를 렌더링 해주기 위해서 setState() 함수를 사용하여 render function을 호출해준다.
+(setState를 호출할 때 마다 React는 새로운 state와 함께 render function을 호출할거야)
+
+>>> 동작 x
+
+class App extends React.Component {
+  state = {
+    count: 0,
+  };
+  add = () => {
+    this.state.count = 1;
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>The number is : {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+      </div>
+    );
+  }
+}
+
+>>> 동작 o
+
+class App extends React.Component {
+  state = {
+    count: 0,
+  };
+  add = () => {
+    this.setState(current => ({ count: current.count + 1 }));
+  };
+
+  minus = () => {
+    this.setState(current => ({ count: current.count - 1 }));
+  };
+  render() {
+    return (
+      <div>
+        <h1>The number is : {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  }
+}
+
+● Component Life Cycle
+
+- Mounting
+  새롭게 렌더링 될 때
+
+- Unmounting
+  컴포넌트가 바뀌어 더 이상 사용되지 않을 때
