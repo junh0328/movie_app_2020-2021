@@ -1,0 +1,28 @@
+컴포넌트는 HTML을 반환하는 함수이다.
+리액트 어플리케이션은 한 번에 하나의 컴포넌트만 랜더링할 수 있다.
+
+ex)
+    ReactDOM.render(
+    <App />, document.getElementById('root')
+    );
+
+컴포넌트 안에 있는 프로퍼티에 벨류(값)을 줄 수 있다.
+ex)
+    <Food fav="kimchi" />
+    Food 컴포넌트안의 fav라는 이름의 프로퍼티에 kimchi라는 value를 줬다.
+
+props란 properties의 약자로, component안에 넣게되는 것들이라 생각하면 딘다.
+
+map은 array의 각 item에서 function을 실행하는 array를 가지는 javaScript function이며,
+그 function의 result를 갖는 array를 너에게 준다.
+
+const friends = ["dal", "mark", "lynn", "japan guy"];
+
+friends.map(current => {
+    console.log(current);
+    return friend + " ♥ ";
+})
+
+>>>
+
+friends = ["dal ♥", "mark ♥", "lynn ♥", "japan guy ♥"];
