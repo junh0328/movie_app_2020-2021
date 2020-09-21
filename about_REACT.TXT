@@ -101,7 +101,7 @@ class App extends React.Component {
   }
 }
 
-● Component Life Cycle
+● Component Life Cycle( 컴포넌트 생명주기 )
 
 - Mounting
 >>>새롭게 인스턴스가 생성되어 DOM상에 삽입될 때, 순서대로 호출합니다.
