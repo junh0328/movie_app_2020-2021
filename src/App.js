@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
+import "./App.css";
+
 /* 
   state는 함수형이 아닌, 클래스형 컴포넌트에서 다루는 개념이다.
   클래스형 컴포넌트가 되기 위해서는 App 클래스가 리액트가 제공하는 Component 클래스를 반드시 상속받아야 한다.
@@ -30,16 +32,25 @@ class App extends React.Component {
   };
   render() {
     const { isLoading, movies } = this.state;
-    return <div>{isLoading ? 'Loading...' : movies.map(movie => (
+    return <section class ="container">
+      {isLoading ? (
+      <div class="loader">
+      <span class="loader__text">Loading...</span>
+      </div> 
+      ) : (
+        <div class = "movies">
+          {movies.map(movie => (
       <Movie
-      key={movie.id}
-      id={movie.id} 
-      year={movie.year} 
-      title={movie.title} 
-      summary={movie.summary} 
-      poster={movie.medium_cover_image}/> 
+        key={movie.id}
+        id={movie.id}
+        year={movie.year} 
+        title={movie.title} 
+        summary={movie.summary} 
+        poster={movie.medium_cover_image}/> 
     ))}
-    </div>
+        </div>
+      )}
+    </section>
   };
 }
 
