@@ -17,14 +17,17 @@ class App extends React.Component {
     movies: []
   };
   getMovies = async () => {
+    // 실제 movies가 키값이 들어있는 곳이 data.data.movies 이기 때문에 다음과 같이 나타냈다. const {data:{data:{movies},}} = await.axios.get("url")
     const {
       data: {
-        data: { movies }
+        data: { movies },
       }
-    } = await axios.get(
-      "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+    } = await axios.get(  //axios라는 모듈은 자바스크립트의 fetch()함수를 대신해서 영화 배열 데이터를 가져오는데 사용되는 모듈이다.
+      "https://yts-proxy.now.sh/list_movies.json?limit=30&&sort_by=download_count"
+      //json 파일은 어떤형식으로 정렬할 건지를 ? 뒤에 나타내었다. 우리는 정렬을 download_count를 사용해서 할 것이다.
     );
     this.setState({ movies, isLoading: false });
+    //this.setState({movies: movies}) 의 구조 (state, 구조 분해 할당으로 얻은 영화데이거 있는 변수)였으나 ES6에 따라 대입할 키와 변수 값이 같을 경우 생략하므로 movies만 사용하게 되었다.
   };
   componentDidMount() {
     this.getMovies();
@@ -39,7 +42,7 @@ class App extends React.Component {
           </div>
         ) : (
             <div className="movies">
-              {movies.map(movie => (
+              {movies.map(movie => (      // map() : 첫 번째 인자로 컴포넌트를 반환할 함수를 전달한다. movies는 배열이고, 배열의 원소 1개가 movie로 넘어온다.
                 <Movie
                   key={movie.id}
                   id={movie.id}
