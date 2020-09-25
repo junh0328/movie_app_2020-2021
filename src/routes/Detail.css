@@ -1,0 +1,15 @@
+* {box-sizing: border-box;}
+
+.box{
+    margin: auto;
+    text-align: center;
+    width: 700px;
+    background-color: #002f6c;
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    -webkit-box-shadow: 21px 25px 23px 3px rgba(0,0,0,0.58);
+    -moz-box-shadow: 21px 25px 23px 3px rgba(0,0,0,0.58);
+    box-shadow: 21px 25px 23px 3px rgba(0,0,0,0.58);
+    word-break: keep-all;
+}
