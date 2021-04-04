@@ -1,0 +1,3 @@
+{
+  "extends": ["plugin:prettier/recommended", "react"] // 프리티어가 추천하는 대로 하겠다.
+}

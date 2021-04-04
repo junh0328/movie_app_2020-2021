@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Movie from '../components/Movie';
-import "./Home.css";
+import './Home.css';
 
 /* 
   state는 함수형이 아닌, 클래스형 컴포넌트에서 다루는 개념이다.
@@ -14,16 +14,17 @@ import "./Home.css";
 class Home extends React.Component {
   state = {
     isLoading: true,
-    movies: []
+    movies: [],
   };
   getMovies = async () => {
     // 실제 movies가 키값이 들어있는 곳이 data.data.movies 이기 때문에 다음과 같이 나타냈다. const {data:{data:{movies},}} = await.axios.get("url")
     const {
       data: {
         data: { movies },
-      }
-    } = await axios.get(  //axios라는 모듈은 자바스크립트의 fetch()함수를 대신해서 영화 배열 데이터를 가져오는데 사용되는 모듈이다.
-      "https://yts-proxy.now.sh/list_movies.json?limit=30&&sort_by=download_count"
+      },
+    } = await axios.get(
+      //axios라는 모듈은 자바스크립트의 fetch()함수를 대신해서 영화 배열 데이터를 가져오는데 사용되는 모듈이다.
+      'https://yts-proxy.now.sh/list_movies.json?limit=30&&sort_by=download_count',
       //json 파일은 어떤형식으로 정렬할 건지를 ? 뒤에 나타내었다. 우리는 정렬을 download_count를 사용해서 할 것이다.
     );
     this.setState({ movies, isLoading: false });
@@ -41,20 +42,22 @@ class Home extends React.Component {
             <span className="loader__text">Loading...</span>
           </div>
         ) : (
-            <div className="movies">
-              {movies.map(movie => (      // map() : 첫 번째 인자로 컴포넌트를 반환할 함수를 전달한다. movies는 배열이고, 배열의 원소 1개가 movie로 넘어온다.
-                <Movie
-                  key={movie.id}
-                  id={movie.id}
-                  year={movie.year}
-                  title={movie.title}
-                  summary={movie.summary}
-                  poster={movie.medium_cover_image}
-                  genres={movie.genres}
-                />
-              ))}
-            </div>
-          )}
+          <div className="movies">
+            {movies.map((
+              movie, // map() : 첫 번째 인자로 컴포넌트를 반환할 함수를 전달한다. movies는 배열이고, 배열의 원소 1개가 movie로 넘어온다.
+            ) => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
+              />
+            ))}
+          </div>
+        )}
       </section>
     );
   }
