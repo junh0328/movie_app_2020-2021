@@ -1,10 +1,10 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import Home from './routes/Home';
-import Detail from './routes/Detail';
+import Home from './pages/Home';
+import Detail from './pages/Detail';
 import Navigation from './components/Navigation';
 import './App.css';
-import HomeChanged from './routes/HomeChanged';
+import HomeChanged from './pages/HomeChanged';
 
 function App() {
   return (
