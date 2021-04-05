@@ -4,6 +4,7 @@ import Home from './routes/Home';
 import Detail from './routes/Detail';
 import Navigation from './components/Navigation';
 import './App.css';
+import HomeChanged from './routes/HomeChanged';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
     <HashRouter>
       <Navigation />
       <Route path="/" exact={true} component={Home} />
+      <Route path="/changed" exact={true} component={HomeChanged} />
       <Route path="/movie/:id" component={Detail} />
     </HashRouter>
   );
