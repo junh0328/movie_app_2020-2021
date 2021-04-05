@@ -30,23 +30,27 @@ const HomeChanged = () => {
   }, []);
 
   return (
-    <div>
+    <section className="container">
       {!isLoading ? (
         <div>로딩중..</div>
       ) : (
-        movies.map((movie) => (
-          <Movie
-            key={movie.id}
-            id={movie.id}
-            year={movie.year}
-            title={movie.title}
-            summary={movie.summary}
-            poster={movie.medium_cover_image}
-            genres={movie.genres}
-          ></Movie>
-        ))
+        <div className="movies">
+          {movies.map((
+            movie, // map() : 첫 번째 인자로 컴포넌트를 반환할 함수를 전달한다. movies는 배열이고, 배열의 원소 1개가 movie로 넘어온다.
+          ) => (
+            <Movie
+              key={movie.id}
+              id={movie.id}
+              year={movie.year}
+              title={movie.title}
+              summary={movie.summary}
+              poster={movie.medium_cover_image}
+              genres={movie.genres}
+            />
+          ))}
+        </div>
       )}
-    </div>
+    </section>
   );
 };
 
