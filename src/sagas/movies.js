@@ -5,14 +5,16 @@ import { LOAD_MOVIES_FAILURE, LOAD_MOVIES_REQUEST, LOAD_MOVIES_SUCCESS } from '.
 // function loadMoviesAPI(data) {
 //   return axios.post('api', data);
 // }
+// export const FetchingData = async () => await getMovies();
 
-function* loadMovies() {
+function* loadMovies(action) {
   try {
     // const result = yield call(loadMoviesAPI, action.data);
     console.log('saga loadMovies');
     yield delay(1000);
     yield put({
       type: LOAD_MOVIES_SUCCESS,
+      // data: FetchingData(),
     });
   } catch (err) {
     console.error(err);

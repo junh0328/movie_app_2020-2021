@@ -15,16 +15,23 @@ export const LOAD_MOVIES_SUCCESS = 'LOAD_MOVIES_SUCCESS';
 export const LOAD_MOVIES_FAILURE = 'LOAD_MOVIES_FAILURE';
 
 export const getMovies = async () => {
-  const {
-    data: {
-      data: { movies },
-    },
-  } = await axios.get('https://yts-proxy.now.sh/list_movies.json?limit=10&&sort_by=download_count');
-  console.log(movies);
-  return movies;
+  try {
+    const {
+      data: {
+        data: { movies },
+      },
+    } = await axios.get('https://yts-proxy.now.sh/list_movies.json?limit=10&&sort_by=download_count');
+    console.log(movies);
+    return movies;
+  } catch (err) {
+    console.error(err);
+    return;
+  }
 };
 
-export const FetchingData = getMovies();
+(async () => {
+  const FetchingData = await getMovies();
+})();
 
 const movies = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -36,6 +43,7 @@ const movies = (state = initialState, action) =>
       }
       case LOAD_MOVIES_SUCCESS: {
         draft.isLoading = false;
+        draft.loadMovieDone = true;
         draft.movies = draft.movies.concat(FetchingData);
         break;
       }
