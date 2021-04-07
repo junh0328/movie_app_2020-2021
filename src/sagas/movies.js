@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { all, call, fork, put, takeLatest, delay } from 'redux-saga/effects';
-import { getMovies, LOAD_MOVIES_FAILURE, LOAD_MOVIES_REQUEST, LOAD_MOVIES_SUCCESS } from '../reducer/movies';
+// import axios from 'axios';
+import { all, fork, put, takeLatest, delay } from 'redux-saga/effects';
+import { LOAD_MOVIES_FAILURE, LOAD_MOVIES_REQUEST, LOAD_MOVIES_SUCCESS } from '../reducer/movies';
 
 // function loadMoviesAPI(data) {
 //   return axios.post('api', data);

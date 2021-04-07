@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_MOVIES_REQUEST } from '../reducer/movies';
 
 const HomeChanged = () => {
-  const { isLoading, loadMovieDone, movies } = useSelector((state) => state.movies);
+  const { isLoading, movies } = useSelector((state) => state.movies);
+  console.log('가져온 movie data 는?');
+  console.log(movies);
 
   const dispatch = useDispatch();
 
@@ -15,11 +17,11 @@ const HomeChanged = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   if (loadMovieDone) {
-  //     console.log(`movies 데이터 출력 : ${movies}`);
-  //   }
-  // }, [loadMovieDone]);
+  useEffect(() => {
+    if (movies) {
+      console.log(`완료된 movies 데이터 출력 : ${movies}`);
+    }
+  }, [movies]);
 
   return (
     <section className="container">
@@ -28,7 +30,7 @@ const HomeChanged = () => {
       ) : (
         // <div className="movies">
         //   {movies.map((
-        //     movie, // map() : 첫 번째 인자로 컴포넌트를 반환할 함수를 전달한다. movies는 배열이고, 배열의 원소 1개가 movie로 넘어온다.
+        //     movie,
         //   ) => (
         //     <Movie
         //       key={movie.id}

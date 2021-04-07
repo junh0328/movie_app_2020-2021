@@ -2,7 +2,7 @@ import produce from 'immer';
 import axios from 'axios';
 
 export const initialState = {
-  movies: null,
+  movies: [],
   isLoading: true,
 
   loadMovieLoading: false,
@@ -15,8 +15,16 @@ export const LOAD_MOVIES_SUCCESS = 'LOAD_MOVIES_SUCCESS';
 export const LOAD_MOVIES_FAILURE = 'LOAD_MOVIES_FAILURE';
 
 export const getMovies = async () => {
-  return await axios.get('https://yts-proxy.now.sh/list_movies.json?limit=10&&sort_by=download_count');
+  const {
+    data: {
+      data: { movies },
+    },
+  } = await axios.get('https://yts-proxy.now.sh/list_movies.json?limit=10&&sort_by=download_count');
+  console.log(movies);
+  return movies;
 };
+
+export const FetchingData = getMovies();
 
 const movies = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -28,8 +36,7 @@ const movies = (state = initialState, action) =>
       }
       case LOAD_MOVIES_SUCCESS: {
         draft.isLoading = false;
-        draft.loadMovieDone = true;
-        // draft.movies = getMovies();
+        draft.movies = draft.movies.concat(FetchingData);
         break;
       }
       case LOAD_MOVIES_FAILURE: {
