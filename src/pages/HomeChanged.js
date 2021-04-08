@@ -15,12 +15,34 @@ const HomeChanged = () => {
     });
   }, [dispatch]);
 
-  useEffect(() => {
-    if (movies) {
-      console.log('movies 감지');
-      console.log(movies);
+  // useEffect(() => {
+  //   if (movies) {
+  //     console.log('movies 감지');
+  //     console.log(movies);
+  //   }
+  // }, [movies]);
+
+  const handleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    if (scrollTop + clientHeight >= scrollHeight) {
+      console.log('데이터 불러오기');
+      // 페이지 끝에 도달하면 추가 데이터를 받아온다
+      dispatch({
+        type: LOAD_MOVIES_REQUEST,
+      });
     }
-  }, [movies]);
+  };
+
+  useEffect(() => {
+    // scroll event listener 등록
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      // scroll event listener 해제
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 
   return (
     <section className="container">
