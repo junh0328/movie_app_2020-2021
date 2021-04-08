@@ -11,8 +11,8 @@ function App() {
     //Link를 쓰는 Navigation 컴포넌트는 Router 안에 포함시켜줘야 한다!
     <HashRouter>
       <Navigation />
-      <Route path="/" exact={true} component={Home} />
-      <Route path="/changed" exact={true} component={HomeChanged} />
+      <Route path="/" exact component={Home} />
+      <Route path="/changed" exact component={HomeChanged} />
       <Route path="/movie/:id" component={Detail} />
     </HashRouter>
   );
