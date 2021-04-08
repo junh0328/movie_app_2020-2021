@@ -3,7 +3,10 @@
 ### React JS Fundamental Course 2020 > 2021 리뉴얼
 
 ### 둘러보기
+
 https://junh0328.github.io/movie_app__2020/
+
+> changed 를 누르면 redux-devTools로 해당 액션들을 감지하고, 변화된 state 값을 확인할 수 있습니다.
 
 ### 리뉴얼 방향
 
@@ -24,6 +27,8 @@ https://junh0328.github.io/movie_app__2020/
 <b>외부 URL : https://yts.mx/api/v2/list_movies.json</b>
 
 > 필요한 크롬 확장 프로그램: <a href="https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh?hl=ko&hc_location=ufi">JSON VIEWR</a>
+
+> <a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ko">리덕스 데브툴즈</a>
 
 > 출처: <a href="https://nomadcoders.co/react-fundamentals/lobby"> 니코쌤의 ReactJS로 영화 웹 서비스 만들기 </a>
 
