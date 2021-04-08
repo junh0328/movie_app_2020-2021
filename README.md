@@ -2,13 +2,13 @@
 
 ### React JS Fundamental Course 2020 > 2021 리뉴얼
 
-### 둘러보기
+### <a href="https://junh0328.github.io/movie_app__2020/">gh-page</a>로 결과물 확인하기
 
-https://junh0328.github.io/movie_app__2020/
+<p><img src="./images/result.gif" alt="result"></p>
 
 > changed 를 누르면 redux-devTools로 해당 액션들을 감지하고, 변화된 state 값을 확인할 수 있습니다.
 
-### 리뉴얼 방향
+## 🌟 리뉴얼 방향
 
 - 클래스형 컴포넌트를 함수형 컴포넌트로 변경
 - 리덕스사가를 통한 비동기처리
@@ -20,9 +20,7 @@ https://junh0328.github.io/movie_app__2020/
 
 - 타입스크립트 적용
 
-## 적용단계 설명
-
-## 외부 API를 사용하여 리액트로 데이터 표현하기
+## 🌟 외부 API를 사용하여 리액트로 데이터 표현하기
 
 <b>외부 URL : https://yts.mx/api/v2/list_movies.json</b>
 
@@ -32,7 +30,7 @@ https://junh0328.github.io/movie_app__2020/
 
 > 출처: <a href="https://nomadcoders.co/react-fundamentals/lobby"> 니코쌤의 ReactJS로 영화 웹 서비스 만들기 </a>
 
-## 리덕스, 리듀서의 개념을 사용하여 API 불러오기
+## 🌟 OPEN API 불러오기
 
 <p>우리가 불러오고자 하는 오픈 API의 데이터 형식은 다음과 같다.</p>
 
@@ -77,7 +75,7 @@ const getMovies = async () => {
 
 <p>이 데이터를 기존 reducer에서 intialState로 관리하는 movies : [] 에 <a href="https://developer.mozilla.org/en-US/search?q=Array.prototype">concat</a> 해주면 리듀서를 사용한 데이터를 받아오는 처리를 할 수 있다.</p>
 
-## 페이지, 리듀서, 리덕스-사가 data flow 
+## 🌟 data flow 
 
 1. 첫 번째로, 화면을 보여주는 view 단에서 useEffect()를 통해 상황을 감지한다. 아무것도 없는 상태일 때, dispatch를 통해 LOAD_MOVIES_REQUEST 액션을 실행한다.
 
@@ -210,7 +208,7 @@ return (
   );
 ```
 
-## 주의할 점
+## 🌟 주의할 점
 
 1. redux-saga를 처리하는 과정에서 넘겨받은 결과값을 그대로 전달해야 하는데, 서버에서 받은 것처럼 result.data로 처리하면 리듀서에서 concat 할 때 undefined 가 뜰 수 있다.
 
