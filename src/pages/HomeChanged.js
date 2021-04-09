@@ -23,13 +23,13 @@ const HomeChanged = () => {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
-      setPageNumber((pageNumber) => pageNumber + 1);
       console.log(`pageNumber 업데이트  ${pageNumber}`);
       // 페이지 끝에 도달하면 추가 데이터를 받아온다
       dispatch({
         type: LOAD_MOVIES_REQUEST,
         data: pageNumber,
       });
+      setPageNumber((pageNumber) => pageNumber + 1);
     }
   };
 
