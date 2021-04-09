@@ -1,6 +1,6 @@
 # React JS Fundamental Course 2020 > 2021 리뉴얼 🌟
 
-### <a href="https://junh0328.github.io/movie_app__2020/">gh-page</a>로 결과물 확인하기
+### <a href="https://junh0328.github.io/movie_app_2020-2021/#/">gh-page</a>로 결과물 확인하기
 
 <p><img src="./images/result.gif" alt="result"></p>
 
