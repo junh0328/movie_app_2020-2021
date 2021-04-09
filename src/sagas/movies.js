@@ -1,21 +1,14 @@
 import axios from 'axios';
-import { useState } from 'react';
 import { all, fork, put, takeLatest, call } from 'redux-saga/effects';
 import { LOAD_MOVIES_FAILURE, LOAD_MOVIES_REQUEST, LOAD_MOVIES_SUCCESS } from '../reducer/movies';
 
-const [state, SetState] = useState(10);
-
-async function loadMoviesAPI() {
+async function loadMoviesAPI(data) {
   try {
     const {
       data: {
         data: { movies },
       },
-    } = await axios.get(`https://yts-proxy.now.sh/list_movies.json?limit=${state}&&sort_by=download_count`);
-    // 여기서 확인
-    // console.log(`movies 가져와서 구조분해할당으로 담기`);
-    // console.log(movies);
-    SetState((prev) => prev + 10);
+    } = await axios.get(`https://yts-proxy.now.sh/list_movies.json?limit=10&&sort_by=download_count&page=${data}`);
     return movies;
   } catch (err) {
     console.error(err);
@@ -23,8 +16,9 @@ async function loadMoviesAPI() {
   }
 }
 
-function* loadMovies() {
-  const result = yield call(loadMoviesAPI); // loadMoviesAPI 함수 호출에 의해 return 된 movies 객체
+function* loadMovies(action) {
+  // console.log(action.data);
+  const result = yield call(loadMoviesAPI, action.data); // loadMoviesAPI 함수 호출에 의해 return 된 movies 객체
   // 여기서 잘 불러왔는지 확인
   // console.log('리턴된 result 출력 :');
   // console.log(result);

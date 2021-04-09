@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 import Movie from '../components/Movie';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,31 +6,29 @@ import { LOAD_MOVIES_REQUEST } from '../reducer/movies';
 
 const HomeChanged = () => {
   const { isLoading, movies } = useSelector((state) => state.movies);
+  const [pageNumber, setPageNumber] = useState(1);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({
       type: LOAD_MOVIES_REQUEST,
+      data: pageNumber,
     });
+    setPageNumber((pageNumber) => pageNumber + 1);
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (movies) {
-  //     console.log('movies 감지');
-  //     console.log(movies);
-  //   }
-  // }, [movies]);
 
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
-      console.log('데이터 불러오기');
+      setPageNumber((pageNumber) => pageNumber + 1);
+      console.log(`pageNumber 업데이트  ${pageNumber}`);
       // 페이지 끝에 도달하면 추가 데이터를 받아온다
       dispatch({
         type: LOAD_MOVIES_REQUEST,
+        data: pageNumber,
       });
     }
   };
@@ -42,7 +40,7 @@ const HomeChanged = () => {
       // scroll event listener 해제
       window.removeEventListener('scroll', handleScroll);
     };
-  });
+  }, [pageNumber, dispatch]);
 
   return (
     <section className="container">

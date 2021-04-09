@@ -22,7 +22,7 @@ class Home extends React.Component {
       data: {
         data: { movies },
       },
-    } = await axios.get('https://yts-proxy.now.sh/list_movies.json?limit=30&&sort_by=download_count');
+    } = await axios.get('https://yts-proxy.now.sh/list_movies.json?limit=10&&sort_by=download_count');
     this.setState({ movies, isLoading: false });
     //this.setState({movies: movies}) 의 구조 (state, 구조 분해 할당으로 얻은 영화데이거 있는 변수)였으나 ES6에 따라 대입할 키와 변수 값이 같을 경우 생략하므로 movies만 사용하게 되었다.
   };
