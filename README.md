@@ -363,6 +363,45 @@ useEffect(() => {
 
 <p>pageNumber의 초기값을 1로 주었고, 처음 아무것도 없는 상태에서 LOAD_MOVIES_REQUESt를 실행한 후, pageNumber를 올려줍니다. 그러면 axios 단에서 다음 페이지에 limit=10 속성과 함께 영화 데이터를 추가적으로 가져올 것입니다.</p>
 
+```js
+📁/sagas/movies
+...
+
+async function loadMoviesAPI(data) {
+  // 3. data 안에는 action.data 즉 useState로 관리하는 pageNumber 가 들어있습니다.
+  // 4. 추가적으로 요청이 생길 때마다 1, 2, 3, ... 증가하며 데이터를 페이지 별로 나눠 불러올 수 있습니다.
+  try {
+    const {
+      data: {
+        data: { movies },
+      },
+    } = await axios.get(`https://yts-proxy.now.sh/list_movies.json?limit=10&&sort_by=download_count&page=${data}`);
+    return movies;
+  } catch (err) {
+    console.error(err);
+    return;
+  }
+}
+
+function* loadMovies(action) {
+  const result = yield call(loadMoviesAPI, action.data); 
+  // 1. action.data에는 dispatch 시에 액션 타입과 같이 보낸 data, 즉 pageNumber 가 들어있습니다.
+  // 2. 이를 call loadMoviesAPI를 호출하면서 결과값을 result에 담습니다.
+  try {
+    yield put({
+      type: LOAD_MOVIES_SUCCESS,
+      data: result,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOAD_MOVIES_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+```
+
 <hr/>
 
 ## 느낀점
