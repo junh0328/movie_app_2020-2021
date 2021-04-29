@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "emotion": "^11.0.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
@@ -29,7 +30,7 @@
     "styled-components": "^5.2.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": " react-scripts start .env",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
