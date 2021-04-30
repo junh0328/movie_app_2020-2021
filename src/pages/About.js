@@ -58,7 +58,7 @@ const Netflix = () => {
   // }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 100 }}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
       {upLoad && movies !== [] ? (
         <div
           style={{
@@ -78,14 +78,15 @@ const Netflix = () => {
             넷플릭스 오리지널 데이터 불러오기
           </button>
           {orginals && (
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               {orginals.map((original) => (
                 <div key={original.id}>
-                  {original.id},{original.name}
+                  <p>{original.id}</p>
+                  <p>{original.name}</p>
                   <img
                     src={`https://image.tmdb.org/t/p/original/${original.backdrop_path}`}
                     alt={original.name}
-                    style={{ width: 200 }}
+                    style={{ width: 400, marginRight: 10 }}
                   />
                   {/* <img src={`https://image.tmdb.org/t/p/original/${props.props.poster_path}`} */}
                 </div>
