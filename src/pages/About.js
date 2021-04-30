@@ -7,6 +7,7 @@ console.log('key 생성: ', process.env.REACT_APP_API);
 
 const Netflix = () => {
   const [movies, setMovies] = useState([]);
+  const [orginals, setOriginals] = useState([]);
   const [upLoad, setUpLoad] = useState(false);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const Netflix = () => {
   const BASE_URL = `https://api.themoviedb.org/3`;
   const Genre = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
   const NetFlixOriginals = `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`;
+  const TopRated = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US`;
 
   const fetchApi = async () => {
     try {
@@ -36,14 +38,24 @@ const Netflix = () => {
         data: { results },
       } = await axios.get(NetFlixOriginals);
       console.log('load original datas', results);
+      setOriginals(results);
     } catch (error) {
       console.error(error);
     }
   };
 
-  if (upLoad && movies !== []) {
-    console.log('데이터 들어옴', movies);
-  }
+  const fetchTopRated = async () => {
+    try {
+      const response = await axios.get(TopRated);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // if (upLoad && movies !== []) {
+  //   console.log('데이터 들어옴', movies);
+  // }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 100 }}>
@@ -65,6 +77,24 @@ const Netflix = () => {
           <button style={{ marginTop: 20 }} onClick={fetchNetflixOriginals}>
             넷플릭스 오리지널 데이터 불러오기
           </button>
+          {orginals && (
+            <div>
+              {orginals.map((original) => (
+                <div key={original.id}>
+                  {original.id},{original.name}
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${original.backdrop_path}`}
+                    alt={original.name}
+                    style={{ width: 200 }}
+                  />
+                  {/* <img src={`https://image.tmdb.org/t/p/original/${props.props.poster_path}`} */}
+                </div>
+              ))}
+            </div>
+          )}
+          <button style={{ marginTop: 20 }} onClick={fetchTopRated}>
+            넷플릭스 Top Rated 데이터 불러오기
+          </button>
         </div>
       ) : (
         <div>로딩중</div>
@@ -74,3 +104,6 @@ const Netflix = () => {
 };
 
 export default Netflix;
+
+/*
+ */
