@@ -3,11 +3,12 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
-console.log('key 생성: ', process.env.REACT_APP_API);
+// console.log('key 생성: ', process.env.REACT_APP_API);
 
 const Netflix = () => {
   const [movies, setMovies] = useState([]);
   const [orginals, setOriginals] = useState([]);
+  const [topRates, setTopRates] = useState([]);
   const [upLoad, setUpLoad] = useState(false);
 
   useEffect(() => {
@@ -46,8 +47,11 @@ const Netflix = () => {
 
   const fetchTopRated = async () => {
     try {
-      const response = await axios.get(TopRated);
-      console.log(response.data);
+      const {
+        data: { results },
+      } = await axios.get(TopRated);
+      console.log('load TopRated datas', results);
+      setTopRates(results);
     } catch (error) {
       console.error(error);
     }
@@ -96,6 +100,26 @@ const Netflix = () => {
           <button style={{ marginTop: 20 }} onClick={fetchTopRated}>
             넷플릭스 Top Rated 데이터 불러오기
           </button>
+          {topRates && (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              {topRates.map((topRate) => (
+                <div key={topRate.id}>
+                  <p>{topRate.id}</p>
+                  <p>
+                    🌟 {topRate.vote_average}, Count with {topRate.vote_count}
+                  </p>
+
+                  <p>{topRate.title}</p>
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${topRate.backdrop_path}`}
+                    alt={topRate.name}
+                    style={{ width: 400, marginRight: 10 }}
+                  />
+                  {/* <img src={`https://image.tmdb.org/t/p/original/${props.props.poster_path}`} */}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ) : (
         <div>로딩중</div>
