@@ -4,45 +4,43 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const Container = styled.div`
-  overflow: hidden;
-`;
+// const Container = styled.div`
+//   overflow: hidden;
+// `;
 
-const StyledSlider = styled(Slider)`
-  .slick-slide div {
-    outline: none;
-  }
-`;
+// const StyledSlider = styled(Slider)`
+//   .slick-slide div {
+//     outline: none;
+//     width: auto;
+//   }
+// `;
 
-const ImageContainer = styled.div`
-  margin: 0 16px;
-`;
+// const ImageContainer = styled.div`
+//   margin: 0 16px;
+// `;
 
-const Image = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-`;
+// const Image = styled.img`
+//   max-width: 100%;
+//   max-height: 160px;
+// `;
 
 const imgUrl = require('../image/image.jpeg');
 
 const items = [
   { id: 1, url: imgUrl },
-  { id: 2, url: imgUrl },
   { id: 3, url: imgUrl },
-  { id: 4, url: imgUrl },
+  {
+    id: 4,
+    url: 'https://image.shutterstock.com/image-illustration/3d-rendering-shepherds-purse-capsella-600w-1926917882.jpg',
+  },
   { id: 5, url: imgUrl },
-  { id: 6, url: imgUrl },
-  { id: 7, url: imgUrl },
-  { id: 8, url: imgUrl },
-  { id: 9, url: imgUrl },
-  { id: 10, url: imgUrl },
 ];
 
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
-      dots: true,
-      infinite: true,
+      dots: false,
+      infinite: false,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -50,20 +48,18 @@ export default class SimpleSlider extends Component {
       centerMode: true,
     };
     return (
-      <Container>
+      <>
         <h2> Single Item</h2>
-        <StyledSlider {...settings}>
+        <Slider {...settings}>
           {items.map((item) => {
             return (
               <div key={item.id}>
-                <ImageContainer>
-                  <Image src={item.url} />
-                </ImageContainer>
+                <img src={item.url} />
               </div>
             );
           })}
-        </StyledSlider>
-      </Container>
+        </Slider>
+      </>
     );
   }
 }

@@ -7,6 +7,7 @@ import './App.css';
 import HomeChanged from './pages/HomeChanged';
 import SimpleSlider from './pages/Slider';
 import Netflix from './pages/About';
+import SimpleSlider2 from './pages/Slider2';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/changed" exact component={HomeChanged} />
       <Route path="/movie/:id" component={Detail} />
       <Route path="/slider" component={SimpleSlider} />
+      <Route path="/slider2" component={SimpleSlider2} />
       <Route path="/netflix" component={Netflix} />
     </HashRouter>
   );

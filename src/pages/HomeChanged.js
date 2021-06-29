@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_MOVIES_REQUEST } from '../reducer/movies';
 
 const HomeChanged = () => {
-  const { isLoading, movies } = useSelector((state) => state.movies);
+  const { isLoading, movie } = useSelector((state) => state.movies);
   const [pageNumber, setPageNumber] = useState(1);
 
   const dispatch = useDispatch();
@@ -17,6 +17,10 @@ const HomeChanged = () => {
     });
     setPageNumber((pageNumber) => pageNumber + 1);
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log('movie 객체 감지: ', movie);
+  }, [movie]);
 
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
@@ -48,15 +52,15 @@ const HomeChanged = () => {
         <div>로딩중..</div>
       ) : (
         <div className="movies">
-          {movies.map((movie) => (
+          {movie.map((m) => (
             <Movie
-              key={movie.id}
-              id={movie.id}
-              year={movie.year}
-              title={movie.title}
-              summary={movie.summary}
-              poster={movie.medium_cover_image}
-              genres={movie.genres}
+              key={m.id}
+              id={m.id}
+              year={m.year}
+              title={m.title}
+              summary={m.summary}
+              poster={m.medium_cover_image}
+              genres={m.genres}
             />
           ))}
         </div>

@@ -1,7 +1,9 @@
 import produce from 'immer';
 
 export const initialState = {
-  movies: [],
+  movie: [],
+  wholeMovies: [],
+
   isLoading: true,
 
   loadMovieLoading: false,
@@ -22,7 +24,7 @@ const movies = (state = initialState, action) =>
         break;
       }
       case LOAD_MOVIES_SUCCESS: {
-        draft.movies = draft.movies.concat(action.data);
+        draft.movie = draft.movie.concat(action.data);
         draft.isLoading = false;
         draft.loadMovieDone = true;
         break;
